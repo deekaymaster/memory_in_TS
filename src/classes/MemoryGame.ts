@@ -6,11 +6,13 @@ interface Card {
 
 export class MemoryGame {
     private _cards: Card[];
-    private _boardSize: number;
+    private _boardSizeX: number;
+    private _boardSizeY: number;
     private _colors: string[];
-    constructor(boardSize: number){
-        this._boardSize = boardSize;
-        this._colors = this.drawColors(Math.pow(boardSize,2)/2);
+    constructor(boardSizeX: number, boardSizeY: number){
+        this._boardSizeX = boardSizeX;
+        this._boardSizeY = boardSizeY;
+        this._colors = this.drawColors((boardSizeX*boardSizeY)/2);
         this._colors = this._colors.concat(this._colors); // dublowanie zawartości tablicy
         this.shuffleArray(); // mieszanie zawartości tablicy z kolorami
         this._cards = this.createCards();
@@ -22,10 +24,10 @@ export class MemoryGame {
 
     private createCards(): Card[]{
         const cards: Card[] = [];
-        for(let i=0; i<Math.pow(this._boardSize,2); i++)
+        for(let i=0; i<this._boardSizeX*this._boardSizeY; i++)
         {
             const card: Card = {
-                id: i,
+                id: i+1,
                 color: this._colors[i],
                 flipped: false
             };
@@ -34,6 +36,7 @@ export class MemoryGame {
         return cards;
     }
 
+    
     private drawColors(colorsAmount: number): string[]{
         const colors: string[] = [];
 
@@ -41,7 +44,6 @@ export class MemoryGame {
             const colorHex = `#${Math.floor(Math.random()*16777215).toString(16)}`;
             colors.push(colorHex);
         }
-
         return colors;
     }
 

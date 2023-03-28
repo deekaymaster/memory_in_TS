@@ -1,7 +1,8 @@
 export class MemoryGame {
-    constructor(boardSize) {
-        this._boardSize = boardSize;
-        this._colors = this.drawColors(Math.pow(boardSize, 2) / 2);
+    constructor(boardSizeX, boardSizeY) {
+        this._boardSizeX = boardSizeX;
+        this._boardSizeY = boardSizeY;
+        this._colors = this.drawColors((boardSizeX * boardSizeY) / 2);
         this._colors = this._colors.concat(this._colors); // dublowanie zawartości tablicy
         this.shuffleArray(); // mieszanie zawartości tablicy z kolorami
         this._cards = this.createCards();
@@ -11,9 +12,9 @@ export class MemoryGame {
     }
     createCards() {
         const cards = [];
-        for (let i = 0; i < Math.pow(this._boardSize, 2); i++) {
+        for (let i = 0; i < this._boardSizeX * this._boardSizeY; i++) {
             const card = {
-                id: i,
+                id: i + 1,
                 color: this._colors[i],
                 flipped: false
             };
