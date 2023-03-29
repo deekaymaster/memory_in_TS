@@ -18,9 +18,9 @@
 .reverse{
   background-color: rgb(206, 250, 241);
   background-image: url(./img/versace_logo.png) !important;
-  background-size: 88%;
+  background-size: 80%;
   background-repeat: no-repeat;
-  background-position: center top;
+  background-position: center;
 }
   
 .threeXfour{
